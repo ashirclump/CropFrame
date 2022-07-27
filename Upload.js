@@ -71,48 +71,48 @@
 
 import React from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions, ImageBackground, Image } from 'react-native';
-
 import Header from './Header';
-
-
 import LinearGradient from 'react-native-linear-gradient';
-
-
-
 // import { useContext } from 'react';
 // import NoteContext from '../../Context/NoteContext';
 import ImagePicker, { openPicker } from 'react-native-image-crop-picker';
 
 const Uploadimage = ({ navigation }) => {
 
-    // const {globalfont} = useContext(NoteContext);
-    // const [Ifont, setIfont] = globalfont;
-
     const Ifont = 'Poplin';
-
     const openPicker = () => {
         ImagePicker.openPicker({
             width: 300,
-            height: 400,
-            cropping: false,
+height: (500* 3) / 4,
+            cropping: true,
+            // cropperTintColor: 'red',
+            // cropperTintColor: "red",
+            cropperToolbarWidgetColor:"black",
+            cropperToolbarColor :'#EFE4FB',
+            cropperActiveWidgetColor:"blue",
+            freeStyleCropEnabled:true,
+            hideBottomControls:true,
+            showCropFrame :true,
+            cropperToolbarTitle: "             9 Grid",
+            showCropGuidelinesColor :"black",
             includeBase64: true
         }).then(image => {
-            console.log("hello");
-            navigation.navigate("NoCropBox", { img: image });
+            // console.log("hello");
+           
+            navigation.navigate("NoCropBox", {  img: image })
+            return <View style={style.button} />;
+        
         })
-            .catch((e) => console.log(e))
+            // .catch((e) => console.log(e))
     }
 
     return (
         <View style={{ backgroundColor: '#E4D9FB', height: Dimensions.get('window').height }}>
             <LinearGradient colors={['#ffffff', '#ECDCF7']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <View style={styles.card}>
-                    <Header navigation={navigation} title="99 Grid" />
+                    <Header navigation={navigation} title="9 Grid" />
                 </View>
             </LinearGradient>
-
-
-            
 
             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                 <View style={{ height: 130, width: 130, marginTop: 200 }}>
@@ -153,6 +153,14 @@ const Uploadimage = ({ navigation }) => {
     );
 }
 
-const styles = StyleSheet.create({})
-
+const styles = StyleSheet.create({
+button: {
+    backgroundColor: 'blue',
+    // top:100,
+    width: 25,
+    height: 25,
+    // alignContent:'center',
+    borderRadius: 15,
+  },
+});
 export default Uploadimage;
