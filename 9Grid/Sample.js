@@ -86,93 +86,117 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
 import {DynamicCollage, StaticCollage} from 'react-native-images-collage';
-
+import Header from './Header';
+import LinearGradient from 'react-native-linear-gradient';
+import { MatrixTransform } from 'react-native';
 // const Sample= ({props, route, navigation}) => {
-
-
-const Sample = ({props, route}) => {
+const Sample = ({props, route,navigation}) => {
   
+//  const pic = (`data:${items.img.mime};base64,${items.img.data}`)
+  //new
+  let items = route.params;
+    const source = [
+      (`data:${items.img.mime};base64,${items.img.data}`),
+      (`data:${items.img.mime};base64,${items.img.data}`),
+      (`data:${items.img.mime};base64,${items.img.data}`),
+    ];
+
+
   const collageRef = useRef(null);
-  const photos = [
-    require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-    // require('./Pic/boy.png'),
-  ];
   
   return (
-    <View>
-      <ScrollView style={{width:320,top:10,margin:2}} horizontal={true}>
+    <View
+      style={{
+        backgroundColor: '#E4D9FB',
+        height: Dimensions.get('window').height,
+      }}>
+      <LinearGradient
+        colors={['#ffffff', '#E4D5F9']}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}>
+        <View style={style.card}>
+          <Header navigation={navigation} title="9 Grid" />
+        </View>
+      </LinearGradient>
+
+      {/* <ScrollView> */}
+        {/* <Header navigation={navigation} title="9 Grid" /> */}
+         {/* <ScrollView style={{width:320,top:10,margin:2}}> */}
             <View style={{width:5,top:10,margin:2,width:10,height:500,marginRight:1000}}> 
               <StaticCollage style={{width:50,top:10,margin:2,width:10,height:500,marginRight:1000}}
           width={320}
      height={300}
-     images={photos}
+     images={source}
      
- matrix={ [1,1,9] } /> 
+ matrix={ [1,1,1] } /> 
 
        </View>
-       </ScrollView>
-      {/* <View style={style.sectionContainer}>
-        <Text>boggypp</Text>
-        <DynamicCollage
-          ref={collageRef}
-          // containerStyle={borderColor='red'}
-          width={400}
-          height={400}
-          images={photos}
-          // replaceImage={set}
-          matrix={[3, 3, 3]}
-          onPress={(m, i) => {
-            collageRef.current.replaceImage(
-              `require('./Pic/boy.png')${(150 + Math.random() + 100).toFixed(
-                10,
-              )}`,
-              m,
-              i,
-            );
-          }}
-          EditButtonComponent={() => {
-            return <View style={style.button} />;
-          }}
-          editButtonPosition={'bottom-right'}
-          isEditButtonVisible={true}
-        />
-      </View> */}
+       {/* </ScrollView> */}
+        {/* <View style={style.sectionContainer}>
+          <DynamicCollage
+            ref={collageRef}
+            // containerStyle={borderColor='red'}
+            width={340}
+            height={340}
+            images={source}
+            replaceImage={source}
+            matrix={[1,1,1]}
+            const onEditButtonPress={(a, b) => {
+              collageRef.current.replaceImage(
+                `require('./Pic/boy.png')${(0 + Math.random(1) + 0).toFixed(
+                  0,
+                )}`,
+                a,
+                b,
+              );
+            }}
+            EditButtonComponent={() => {
+              return <View style={style.button} />;
+            }}
+            editButtonPosition={'bottom-right'}
+            isEditButtonVisible={true}
+          />
+        </View> */}
 
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('');
-        }}
-        style={{
-          alignItems: 'center',
-          borderRadius: 15,
-          backgroundColor: '#3672E9',
-          width: '70%',
-          height: 59,
-          top: 800,
-          margin: 55,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Text
+       
+
+        <View
           style={{
-            color: '#FFF',
-            fontSize: 18,
-            fontWeight: '500',
+            backgroundColor: '#3672E9',
+            width: 200,
+            height: 59,
+            // top: 50,
+            margin: 20,
+            left:50,
+            borderRadius: 15,
+            alignItems: 'center',
+            justifyContent: 'center',
+            // flex:1,
+            // flexDirection:'column',
+            // top:24,
+            // margin:10}}
           }}>
-          Crop It
-        </Text>
-      </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              alignItems: 'center',
+              borderRadius: 15,
+              // top:20,
+            }}>
+            <Text
+              style={{
+                color: '#FFF',
+                fontSize: 18,
+                // fontWeight: '500',
+              }}>
+              Crop It
+            </Text>
+          </TouchableOpacity>
+        </View>
+      {/* </ScrollView> */}
     </View>
   );
 };
@@ -180,16 +204,17 @@ const Sample = ({props, route}) => {
 const style = StyleSheet.create({
   button: {
     backgroundColor: 'blue',
-    // top:100,
-    width: 25,
+    // top:300,
+    width: 85,
     height: 25,
     // alignContent:'center',
     borderRadius: 15,
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 3,
     paddingHorizontal: 4,
-    borderColor: 'black',
+    // borderColor: 'black',
   },
+  
 });
 export default Sample;

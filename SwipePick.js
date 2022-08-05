@@ -69,48 +69,48 @@
 // export default Upload;
 
 
+
+// main code------------------------------------------------------------------------
+
 import React from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Dimensions, ImageBackground, Image } from 'react-native';
-import Header from './Header';
+import Header from './9Grid/Header';
 import LinearGradient from 'react-native-linear-gradient';
-// import { useContext } from 'react';
-// import NoteContext from '../../Context/NoteContext';
 import ImagePicker, { openPicker } from 'react-native-image-crop-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
 
 const Uploadimage = ({ navigation }) => {
 
     const Ifont = 'Poplin';
     const openPicker = () => {
         ImagePicker.openPicker({
-            width: 300,
-height: (500* 3) / 4,
-            cropping: true,
-            // cropperTintColor: 'red',
-            // cropperTintColor: "red",
+            // width: 300,
+// height:500,
+            cropping: false,
             cropperToolbarWidgetColor:"black",
             cropperToolbarColor :'#EFE4FB',
             cropperActiveWidgetColor:"blue",
             freeStyleCropEnabled:true,
             hideBottomControls:true,
             showCropFrame :true,
-            cropperToolbarTitle: "             9 Grid",
+            cropperToolbarTitle: "             Swipe Photo",
             showCropGuidelinesColor :"black",
-            includeBase64: true
-        }).then(image => {
-            // console.log("hello");
-           
-            navigation.navigate("NoCropBox", {  img: image })
-            return <View style={style.button} />;
-        
-        })
-            // .catch((e) => console.log(e))
-    }
+            // aspectRatio:1*3,
+            includeBase64: true,
+
+
+            //  width: (400),
+        // height: (400),
+        // compressImageMaxWidth:(300),
+        // compressImageMaxHeight:(300),
+        }).then(image => {navigation.navigate ("Swipe3" ,{img : image }); })}
 
     return (
         <View style={{ backgroundColor: '#E4D9FB', height: Dimensions.get('window').height }}>
             <LinearGradient colors={['#ffffff', '#ECDCF7']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
                 <View style={styles.card}>
-                    <Header navigation={navigation} title="9 Grid" />
+                    <Header navigation={navigation} title="Swipe" />
                 </View>
             </LinearGradient>
 
